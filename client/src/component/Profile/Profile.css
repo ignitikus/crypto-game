@@ -1,0 +1,68 @@
+table {
+   border-collapse: collapse;
+}
+
+table, th, td {
+   border-bottom: 1px solid grey;
+}
+
+.profileContainer{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-y: auto ;
+}
+
+.user-info{
+   width: 100%;
+   padding: 15px 30px;
+}
+
+.user-welcome{
+   text-align: center;
+   font-weight: 900;
+   font-size: 1.7em;
+}
+
+.user-total{
+   text-align: center;
+   font-weight: 700;
+   font-size: 1.2em;
+   padding-bottom: 10px;
+}
+
+.user-details{
+   padding: 10px 0px;
+   font-weight: 500;
+   font-size: 1.1em;
+}
+
+.cryptoContainer{
+   width: 100%;
+}
+
+.cryptoEntryContainer th:nth-child(1){
+   text-align: left;
+}
+
+.cryptoEntryContainer th:nth-child(3){
+   text-align: right;
+}
+
+.cryptoEntryContainer td:nth-child(3){
+   text-align: right;
+}
+
+.cryptoEntryContainer td:nth-child(2){
+   text-align: center;
+}
+
+.my-button{
+   color: #fafafa;
+   background-color: #4caf50;
+}
+
+.info-icon:hover{
+   cursor: pointer;
+   color: grey
+}

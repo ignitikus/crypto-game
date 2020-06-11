@@ -1,0 +1,9 @@
+.MuiPaper-root.MuiDrawer-paper.makeStyles-drawerPaper-4.MuiDrawer-paperAnchorRight.MuiDrawer-paperAnchorDockedRight.MuiPaper-elevation0{
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary{
+   color: #fafafa;
+   background-color: #4caf50
+}

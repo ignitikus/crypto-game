@@ -1,0 +1,61 @@
+.leaderBoardOuterContainer{
+   padding: 20px
+}
+
+.leaderBoardInnerContainer{
+   display: flex;
+   flex-direction: column;
+}
+
+.leaderBoardTitle{
+   text-align: center;
+}
+
+.topEntry{
+   position: relative;
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: space-between;
+   font-weight: bold;
+   background-color: gold;
+   font-style: italic;
+   border-radius: 5px;
+}
+
+.secondEntry{
+   position: relative;
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: space-between;
+   font-weight: bold;
+   background-color: silver;
+   border-radius: 5px;
+}
+
+.thirdEntry{
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: space-between;
+   font-weight: bold;
+   background-color: #cd7f32;
+   border-radius: 5px;
+}
+
+.entryContainer{
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: space-between;
+   border-radius: 5px;
+}
+
+.entryName{
+   padding: 10px 20px;
+}
+
+.entryMoney{
+   padding: 10px 20px;
+}
