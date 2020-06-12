@@ -7,8 +7,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config();
 
-const cryptoRouter = require('./routes/crypto');
-const usersRouter = require('./routes/users');
+const cryptoRouter = require('./routes/crypto/crypto');
+const usersRouter = require('./routes/users/users');
 
 const app = express();
 

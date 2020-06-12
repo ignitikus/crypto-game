@@ -1,19 +1,16 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { Suspense } from 'react';
+import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
 
-import Navbar from '../Navbar/Navbar';
+import Loader from '../Loader/Loader'
 import AuthContainer from '../Auth/AuthContainer'
-// use divider in profile component 
-// import Divider from '@material-ui/core/Divider';
 
 const Main = React.lazy(() => import('../Main/Main'))
 
-const drawerWidth = 340;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
    root: {
@@ -25,8 +22,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#4caf50'
    },
    drawer: {
-      width: drawerWidth,
-      flexShrink: 0
+      [theme.breakpoints.up('sm')]: {
+         width: drawerWidth,
+         flexShrink: 1,
+      }
    },
    drawerPaper: {
       width: drawerWidth,
@@ -41,31 +40,43 @@ const useStyles = makeStyles((theme) => ({
    },
    }));
 
-   export default function ProfileDrawer() {
+const theme = createMuiTheme({
+   palette: {
+      primary: {
+         main: '#4caf50'
+      }
+   },
+});
+
+export default function ProfileDrawer() {
    const classes = useStyles();
 
    return (
       <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-         <Toolbar>
-            <Navbar />
-         </Toolbar>
-      </AppBar>
-      <main className={classes.content}>
-         <div className={classes.toolbar} />
-            <Main />
-      </main>
-      <Drawer
-         className={classes.drawer}
-         variant="permanent"
-         classes={{
-            paper: classes.drawerPaper,
-         }}
-         anchor="right"
-      >
-         <AuthContainer />
-      </Drawer>
+         <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <AppBar position="fixed" className={classes.appBar}>
+               <Toolbar>
+                  <h2 style={{color:'#fff'}}>Crypto game</h2>
+               </Toolbar>
+            </AppBar>
+            <main className={classes.content}>
+               <div className={classes.toolbar} />
+               <Suspense fallback={<Loader/>}>
+                  <Main />
+               </Suspense>   
+            </main>
+            <Drawer
+               className={classes.drawer}
+               variant="permanent"
+               classes={{
+                  paper: classes.drawerPaper,
+               }}
+               anchor="right"
+            >
+               <AuthContainer />
+            </Drawer>
+         </ThemeProvider>
       </div>
    );
 }

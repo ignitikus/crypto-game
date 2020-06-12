@@ -11,14 +11,12 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 import Trading from '../Trading/Trading'
 import { Context } from '../Context/Context'
-import Axios from '../Helpers/Axios'
 
 
 export default class Main extends Component {
     static contextType = Context
 
     state={
-        cryptos: [],
         currentCrypto: {},
         isOpen: false,
         mode: null
@@ -33,16 +31,12 @@ export default class Main extends Component {
         this.setState({isOpen:false})
     }
 
-    getCryptos=async()=>{
-        const success = await Axios.get('/api/crypto/cryptos')
-        this.setState({
-            cryptos: success.data, 
-            currentCrypto: success.data[0], 
-            })
+    getCryptos=()=>{
+        this.setState({currentCrypto: this.context.cryptos[0]})
     }
     
     makeCurrent=(name)=>{
-        const cryptos = [...this.state.cryptos]
+        const cryptos = [...this.context.cryptos]
         const currentCrypto = cryptos.filter(entry => entry.name === name)
         this.setState({currentCrypto: currentCrypto[0]})
     }
@@ -51,16 +45,12 @@ export default class Main extends Component {
         await this.makeCurrent(name)
         this.openDialog()
         this.setState({mode: 'buy'})
-        console.log('Buying')
-        console.log(this.state.currentCrypto)
     }
 
     handleSell=async(name)=>{
         await this.makeCurrent(name)
         this.openDialog()
         this.setState({mode: 'sell'})
-        console.log('Selling')
-        console.log(this.state.currentCrypto)
     }
 
     componentDidMount(){
@@ -68,8 +58,9 @@ export default class Main extends Component {
     }
 
     render() {
-        const { cryptos, isOpen, currentCrypto, mode } = this.state
-        const {isAuth:{auth, user}} = this.context
+        const { isOpen, currentCrypto, mode } = this.state
+        const {isAuth:{auth, user}, cryptos} = this.context
+        const available = user ? user.cryptos.filter(item => item.name && item.amount>0).map(entry=> entry.name) : []
         return (
             <div style={{display:'flex', alignItems:'center'}}>
                 <Trading 
@@ -107,11 +98,11 @@ export default class Main extends Component {
                                     <TableCell align="center">{market_cap}</TableCell>
                                     <TableCell align="center">{current_price}</TableCell>
                                     <TableCell align="center">{price_change_percentage_24h > 0
-                                    ? <div style={{color:'green', display:'flex', alignItems:'center', justifyContent:'center'}}><ArrowDropUpIcon />{price_change_percentage_24h}</div>
-                                    : <div style={{color:'red', display:'flex', alignItems:'center', justifyContent:'center'}}><ArrowDropDownIcon />{price_change_percentage_24h}</div>
+                                        ? <div style={{color:'green', display:'flex', alignItems:'center', justifyContent:'center'}}><ArrowDropUpIcon />{price_change_percentage_24h}</div>
+                                        : <div style={{color:'red', display:'flex', alignItems:'center', justifyContent:'center'}}><ArrowDropDownIcon />{price_change_percentage_24h}</div>
                                     }</TableCell>
                                     <TableCell align="center"><Button onClick={()=>this.handleBuy(name)} disabled={!user || !auth? true: false}>Buy</Button></TableCell>
-                                    <TableCell align="center"><Button onClick={()=>this.handleSell(name)} disabled={!user || !auth? true: false}>Sell</Button></TableCell>
+                                    <TableCell align="center"><Button onClick={()=>this.handleSell(name)} disabled={!available.includes(name) || !user || !auth? true: false}>Sell</Button></TableCell>
                                 </TableRow>
                             )
                         })}

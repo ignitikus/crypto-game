@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import Cookies from 'js-cookie'
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider'
-import Cookies from 'js-cookie'
 import AuthDialog from '../AuthDialog/AuthDialog'
 import Profile from '../Profile/Profile'
 import Leaderboard from '../Leaderboard/Leaderboard'
@@ -59,21 +59,28 @@ export default class AuthContainer extends Component {
             {({isAuth:{user, auth} }) => {
                return(
                   <>
-                  {user && auth ? (
-                     <>
-                        <Profile />
-                        <Divider />
-                        <Leaderboard />
-                     </>
-                  )
-                  : ( <>
-                        <AuthDialog mode={mode} open={open} handleClose={this.handleClose} changeMode={this.changeMode}/>
-                        <Button variant="contained" color="primary" onClick={this.handleClick}>
-                           Login/Register
-                        </Button>
-                     </>
-                  )
-                  }
+                     {user && auth 
+                        ?<div style={{height: '100%'}}>
+                              <Profile />
+                              <Divider />
+                              <Leaderboard />
+                           </div>
+                        :<>
+                           <AuthDialog 
+                              mode={mode} 
+                              open={open} 
+                              handleClose={this.handleClose} 
+                              changeMode={this.changeMode}
+                           />
+                           <Button 
+                              variant="contained" 
+                              color="primary" 
+                              onClick={this.handleClick}
+                           >
+                              Login/Register
+                           </Button>
+                        </>
+                     }
                   </>
                )
             }}

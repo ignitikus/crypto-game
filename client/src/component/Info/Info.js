@@ -25,8 +25,7 @@ export default function Info(props){
          </div>
          <DialogContent>
             <DialogContentText id="alert-dialog-description" >
-               <p style={{display:'flex', alignContent:'center', alignItems:'center'}}>Link to frontend repo:  &nbsp;<GitHubIcon fontSize='large'/></p>
-               <p style={{display:'flex', alignContent:'center', alignItems:'center'}}>Link to backend repo:  &nbsp;<GitHubIcon fontSize='large'/></p>
+               <p style={{display:'flex', alignContent:'center', alignItems:'center'}}>Link to github repo: &nbsp;<a href="https://github.com/ignitikus/crypto-game" target='_blank' rel="noopener noreferrer"><GitHubIcon fontSize='large'/></a></p>
             </DialogContentText>
          </DialogContent>
          <DialogActions>

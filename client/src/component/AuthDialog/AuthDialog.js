@@ -17,20 +17,21 @@ export default function AuthDialog(props) {
          open={open} 
          onClose={handleClose} 
          fullWidth={true} 
-         //size of dialogue can be changed here
          maxWidth={'sm'} 
-         aria-labelledby="form-dialog-title">
+         aria-labelledby="form-dialog-title"
+      >
          <DialogTitle id="form-dialog-title">
-            <Button color="primary" onClick={changeMode} disabled={mode==='Login'? true: false}>
-               Login
-            </Button> /
-            <Button color="primary" onClick={changeMode} disabled={mode==='Register'? true: false}>
-               Register
-            </Button>
+               <Button color="primary" onClick={changeMode} disabled={mode==='Login'? true: false}>
+                  Login
+               </Button> /
+               <Button color="primary" onClick={changeMode} disabled={mode==='Register'? true: false}>
+                  Register
+               </Button>
          </DialogTitle>
-         {mode==='Login'?(
-            <Login handleClose={handleClose}/>
-         ): (<Register handleClose={handleClose}/>)}
+         {mode==='Login'
+            ?<Login handleClose={handleClose}/>
+            :<Register handleClose={handleClose}/>
+         }
       </Dialog>
    )
 }

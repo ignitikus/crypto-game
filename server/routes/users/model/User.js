@@ -22,10 +22,7 @@ const UserSchema = new mongoose.Schema({
       type: Number,
       default: 10000,
    },
-   crypto:[{
-      type: mongoose.Schema.ObjectId,
-      ref: 'Crypto'
-   }]
+   cryptos:[]
 });
 
 module.exports = mongoose.model("User", UserSchema);

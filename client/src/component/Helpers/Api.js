@@ -13,7 +13,15 @@ export const latestUserInfo= async(token)=>{
       })
       return success.data
    } catch (err) {
+      return 'access-error'
+   }
+}
+
+export const getLeaderBoard = async () => {
+   try {
+      const success = await Axios.get('/api/crypto/leaderboard')
+      return success.data
+   } catch (err){
       console.log(err)
-      throw Error(err.response.data.message)
    }
 }

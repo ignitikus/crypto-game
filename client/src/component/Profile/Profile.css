@@ -57,11 +57,6 @@ table, th, td {
    text-align: center;
 }
 
-.my-button{
-   color: #fafafa;
-   background-color: #4caf50;
-}
-
 .info-icon:hover{
    cursor: pointer;
    color: grey
